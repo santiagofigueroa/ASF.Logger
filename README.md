@@ -6,7 +6,6 @@ A lightweight, extensible .NET logging library designed for applications that re
 
 - ✅ Simple static logger for quick setup.
 - ✅ Supports logging to console and PostgreSQL.
-- ✅ Dependency Injection (DI) compatible version for ASP.NET Core or testable environments.
 
 ---
 
@@ -21,4 +20,8 @@ Copy the source files into your .NET project. You can optionally organize the st
 1. Set an external logger (e.g., PostgreSQL logger):
 
 ```csharp
+ASFLogger.Log("System started.");
+ASFLogger.LogException(new Exception("Something went wrong"), "Startup");
 ASFLogger.ExternalLogger = entry => new PostgresLogger("YourConnectionString").Write(entry);
+
+
