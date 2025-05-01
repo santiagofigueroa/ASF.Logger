@@ -17,7 +17,7 @@ namespace ASF.Logger
                 Exception =  ex?.Message + ex?.InnerException + ex?.StackTrace // Only included information essential for debugging
             };
 
-            // Console output
+            // Write to Console output
             Console.WriteLine($"[{logEntry.Timestamp:u}] [{logEntry.Severity}] {logEntry.Message}");
 
             // Forward to custom external logger (e.g., PostgreSQL)
