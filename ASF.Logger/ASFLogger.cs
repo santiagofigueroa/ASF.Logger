@@ -2,7 +2,7 @@
 
 namespace ASF.Logger
 {
-    public static class ASFLogger
+    public static class ASFLogger 
     {
         public static Action<Entry>? ExternalLogger { get; set; }
 
