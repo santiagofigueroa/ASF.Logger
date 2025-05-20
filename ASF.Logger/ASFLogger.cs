@@ -1,12 +1,14 @@
-﻿using ASF.Logger.Models;
+﻿using ASF.Logger.Interface;
+using ASF.Logger.Models;
+using System.Runtime.CompilerServices;
 
 namespace ASF.Logger
 {
-    public static class ASFLogger 
+    public class ASFLogger : IASFLogger
     {
         public static Action<Entry>? ExternalLogger { get; set; }
 
-        public static void Log(string message, Severity severity = Severity.Info, string? user = null, string? context = null, Exception? ex = null)
+        public async Task LogAsync(string message, Severity severity = Severity.Info, string? user = null, string? context = null, Exception? ex = null)
         {
             var logEntry = new Entry
             {
@@ -24,10 +26,10 @@ namespace ASF.Logger
             ExternalLogger?.Invoke(logEntry);
         }
 
-        public static void LogException(Exception ex, string context = "", string? user = null)
+        
+        public async Task LogExceptionAsync(Exception ex, string context = "", string? user = null)
         {
-            Log(ex.Message, Severity.Error, user, context, ex);
+            await LogAsync(ex.Message, Severity.Error, user, context, ex);
         }
-
     }
 }
